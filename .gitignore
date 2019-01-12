@@ -24,3 +24,6 @@ hs_err_pid*
 
 # webpack output
 **/built/bundle.js
+
+# node
+node_modules/.cache/
