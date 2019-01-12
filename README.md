@@ -1,1 +1,2 @@
-# RH-exercise-todolist
+# Red Hat exercise: todo app
+
