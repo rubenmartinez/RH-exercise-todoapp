@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="common_header">
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta name="description" content="Red Hat Exercise: Todo App"></meta>
+<meta name="author" content="Ruben Martinez"></meta>
+
+<title>Red Hat practical exercise</title>
+
+<link rel="stylesheet" type="text/css" href="lib/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css" href="lib/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+<link rel="stylesheet" type="text/css" href="css/todoapp.css?v=10"></link>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Red Hat Practical Exercise: Todo App</a>
+            </div>
+            <div class="pull-right">
+                <ul class="nav pull-right">
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, XXX <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user/preferences"><i class="icon-cog"></i> XXX</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout"><i class="icon-off"></i> Logout</a></li>
+                        </ul></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="todoAppReact" class="todoapp">
+    
+    
+    
+<!-- XXX Test delete    
+                    <div>
+                    <header class="header">
+                        <h1>Todos</h1>
+                        <input class="new-todo" placeholder="Please, enter a new todo"/>
+                    </header>
+                    
+                    <section class="main">
+                        <input id="toggle-all" class="toggle-all" type="checkbox"/>
+                        <label for="toggle-all"></label>
+                        <ul class="todo-list">
+                            <li>
+                                <div class="view">
+                                    <input class="toggle" type="checkbox" />
+                                    <label>
+                                        ToDo 1 asdfa fasd fasdf asd
+                                    </label>
+                                    <button class="destroy"/>
+                                </div>
+                                <input class="edit"/>
+                            </li>
+                            <li>
+                                <div class="view">
+                                    <input class="toggle" type="checkbox" />
+                                    <label>
+                                        ToDo 2 fasdf asd fasdf asd
+                                    </label>
+                                    <button class="destroy"/>
+                                </div>
+                                <input class="edit"/>
+                            </li>
+                        </ul>
+                    </section>
+                    footer
+                </div>
+-->    
+    </div>
+    
+    <script src="built/app-bundled.js"></script>
+    <script src="lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

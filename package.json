@@ -1,5 +1,5 @@
 {
-  "name": "RH-exercise-TodoApp",
+  "name": "rh-exercise-TodoApp",
   "version": "0.0.1",
   "description": "Red Hat exercise: Todo App",
   "repository": {
@@ -13,12 +13,14 @@
   },
   "homepage": "https://github.com/rubenmartinez/RH-exercise-todoapp",
   "dependencies": {
+    "director": "^1.2.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "webpack": "^1.12.2",
     "react-bootstrap": "^0.31.0"
   },
   "scripts": {
+    "build": "webpack --mode production",
     "watch": "webpack --watch -d"
   },
   "devDependencies": {

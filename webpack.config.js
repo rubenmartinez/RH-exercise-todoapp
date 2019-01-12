@@ -1,10 +1,17 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/main/js/todo-app.js',
+    entry: './src/main/js/todoapp.js',
     devtool: 'sourcemaps',
     cache: true,
+    
+    //mode: 'production', XXX
     debug: true,
+
+	optimization: {
+		// XXX
+		minimize: false
+	},
     output: {
         path: __dirname,
         filename: './src/main/resources/static/built/app-bundled.js'
