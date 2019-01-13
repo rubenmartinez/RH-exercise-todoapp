@@ -3,8 +3,10 @@ package net.rubenmartinez.rhe.todo.dto;
 import java.time.LocalTime;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
+@Getter @ToString
 public class Todo {
     private Long id;
 

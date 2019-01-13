@@ -1,9 +1,11 @@
 package net.rubenmartinez.rhe.todo.dto;
 
 import lombok.Data;
-import net.rubenmartinez.rhe.todo.domain.TodoEntity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter @Setter @ToString
 public class TodoNew {
     private Long ownerUserId;
     private String title;
