@@ -26,4 +26,4 @@ hs_err_pid*
 **/static/built/
 
 # node
-/node_modules/
+**/node_modules/
