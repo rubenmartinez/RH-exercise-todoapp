@@ -1,4 +1,4 @@
-package net.rubenmartinez.rhe.configuration;
+package net.rubenmartinez.rhe.app.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

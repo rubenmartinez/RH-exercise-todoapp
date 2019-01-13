@@ -1,4 +1,4 @@
-package net.rubenmartinez.rhe.user;
+package net.rubenmartinez.rhe.app.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import net.rubenmartinez.rhe.user.domain.User;
+import net.rubenmartinez.rhe.app.user.domain.User;
 
 @Service
 public class UserService implements UserDetailsService {

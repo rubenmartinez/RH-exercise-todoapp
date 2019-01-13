@@ -1,4 +1,4 @@
-package net.rubenmartinez.rhe;
+package net.rubenmartinez.rhe.app;
 
 import javax.annotation.PostConstruct;
 

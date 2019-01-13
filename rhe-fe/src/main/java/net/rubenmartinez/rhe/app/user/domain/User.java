@@ -1,4 +1,4 @@
-package net.rubenmartinez.rhe.user.domain;
+package net.rubenmartinez.rhe.app.user.domain;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
