@@ -1,9 +1,11 @@
-package net.rubenmartinez.rhe.app.user.domain;
+package net.rubenmartinez.rhe.app.dao.domain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -19,13 +21,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
+@Getter @Setter @ToString
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
 
-	// XXX
-	private static final Logger LOGGER = LoggerFactory.getLogger(User.class);
-
-	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -42,43 +41,6 @@ public class User implements UserDetails, Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private Set<Role> roles;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return accountNonExpired;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return accountNonLocked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

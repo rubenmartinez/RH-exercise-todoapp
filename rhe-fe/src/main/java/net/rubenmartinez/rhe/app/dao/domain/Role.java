@@ -1,4 +1,4 @@
-package net.rubenmartinez.rhe.app.user.domain;
+package net.rubenmartinez.rhe.app.dao.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 
