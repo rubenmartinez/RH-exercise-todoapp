@@ -9,14 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * Entrypoint for the exercise. It will start a Spring Boot application
- * initializing all controllers on subpackage <code>controller</code>
- * 
- * @author Rubén Martínez {@literal <ruben.martinez.olivares@gmail.com>}
+ * Entrypoint for the Todo management service example
  */
 @SpringBootApplication
 public class Main implements ApplicationListener<ApplicationReadyEvent> {
@@ -34,7 +29,7 @@ public class Main implements ApplicationListener<ApplicationReadyEvent> {
 	public void init() {
 		LOGGER.info("Initialization in progress. Please wait...");
 	}
-
+	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 		logBanner();
