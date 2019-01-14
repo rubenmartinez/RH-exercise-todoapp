@@ -1,12 +1,45 @@
 version: '3'
 services:
+  mysql-todo:
+    image: "mysql:5.6"
+    ports:
+     - "3307:3307"
+    environment:
+     - MYSQL_DATABASE=todoapp
+     - MYSQL_USER=rhe-todo
+     - MYSQL_PASSWORD=rhe-todo
+     - MYSQL_RANDOM_ROOT_PASSWORD=yes
+     - MYSQL_TCP_PORT=3307
+    volumes:
+      - /tmp/todo-datavolume:/var/lib/mysql
+    logging:
+      driver: "none"
+  mysql-fe:
+    image: "mysql:5.6"
+    ports:
+     - "3306:3306"
+    environment:
+     - MYSQL_DATABASE=todoapp
+     - MYSQL_USER=rhe-fe
+     - MYSQL_PASSWORD=rhe-fe
+     - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    logging:
+      driver: "none"
   todo:
     image: "rubenmartinez/rhe-todo"
     ports:
      - "8081:8081"
+    environment:
+     - DB_DATASOURCE=jdbc:mysql://mysql-todo:3307/todoapp # Different port not necessary on openshift/kubernetes as every container can run in each own pod
+    depends_on:
+      - "mysql-todo"
   fe:
     image: "rubenmartinez/rhe-fe"
     ports:
      - "8080:8080"
     environment:
      - TODO_MS=todo:8081
+     - DB_DATASOURCE=jdbc:mysql://mysql-fe/todoapp
+    depends_on:
+      - "mysql-fe"
+      - "todo"

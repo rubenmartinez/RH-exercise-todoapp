@@ -2,7 +2,7 @@ package net.rubenmartinez.rhe.app.controller.exception;
 
 /**
  * A {@code RuntimeException} to signal an error when a user tries to 
- * do a not allowed operation, such as accessing a Todo not belonging to him
+ * do a not allowed operation, such as accessing a TodoDTO not belonging to him
  */
 public class UserNotAllowedException extends RuntimeException {
 

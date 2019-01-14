@@ -1,7 +1,7 @@
 package net.rubenmartinez.rhe.app.service;
 
 /**
- * A {@code RuntimeException} to signal an error when a Todo is not found
+ * A {@code RuntimeException} to signal an error when a TodoDTO is not found
  */
 public class TodoNotFoundException extends RuntimeException {
 

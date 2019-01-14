@@ -41,12 +41,36 @@ button {
 	display: none;
 }
 
+.login-form {
+    min-width: 230px;
+    max-width: 640px;    
+    line-height: 1.4em;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 300;
+    color: #555555;
+}
+
+.login-button input {
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    line-height: 2.5;
+    margin: 10px 0;
+    padding: 0 20px;
+    min-width: 150px;
+    heigth: 180px;
+    border-radius: 30px;
+}
+
+
 .todoapp h1 {
     width: 100%;
     font-size: 70px;
     font-weight: 100;
     text-align: center;
-    color: rgba(51, 122, 183, 0.15);
+    color: rgba(51, 122, 183, 0.15) !important;
     -webkit-text-rendering: optimizeLegibility;
     -moz-text-rendering: optimizeLegibility;
     text-rendering: optimizeLegibility;

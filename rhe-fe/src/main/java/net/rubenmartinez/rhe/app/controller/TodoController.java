@@ -1,7 +1,6 @@
 package net.rubenmartinez.rhe.app.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,21 +8,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.rubenmartinez.rhe.app.controller.exception.UserNotAllowedException;
 import net.rubenmartinez.rhe.app.dao.domain.User;
-import net.rubenmartinez.rhe.app.dto.Todo;
-import net.rubenmartinez.rhe.app.service.TodoNotFoundException;
+import net.rubenmartinez.rhe.app.dto.TodoDTO;
 import net.rubenmartinez.rhe.app.service.TodoService;
-import net.rubenmartinez.rhe.app.service.UserService;
 
 
 @RestController
@@ -34,21 +29,21 @@ public class TodoController {
 	private TodoService todoService;
 
 	@GetMapping
-	public List<Todo> getTodos(Authentication authentication) {
+	public List<TodoDTO> getTodos(Authentication authentication) {
 		return todoService.findByOwnerId(getUserId(authentication));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Todo> create(@RequestBody Todo todo, Authentication authentication) {
-		Todo createdTodo = todoService.create(getUserId(authentication), todo);
+	public ResponseEntity<TodoDTO> create(@RequestBody TodoDTO todoDTO, Authentication authentication) {
+		TodoDTO createdTodo = todoService.create(getUserId(authentication), todoDTO);
 		return new ResponseEntity<>(createdTodo, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Todo> update(@PathVariable("id") Long todoId, @RequestBody Todo todoPatch, Authentication authentication) {
+	public ResponseEntity<TodoDTO> update(@PathVariable("id") Long todoId, @RequestBody TodoDTO todoPatch, Authentication authentication) {
 		checkTodoWriteAllowed(authentication, todoId);
 			
-		Todo updatedTodo = todoService.update(todoId, todoPatch);
+		TodoDTO updatedTodo = todoService.update(todoId, todoPatch);
 		return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
 	}
 

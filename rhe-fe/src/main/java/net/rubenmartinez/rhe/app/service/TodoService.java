@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import net.rubenmartinez.rhe.app.client.TodoRestClient;
 import net.rubenmartinez.rhe.app.client.dto.RestClientTodoDTO;
-import net.rubenmartinez.rhe.app.dto.Todo;
+import net.rubenmartinez.rhe.app.dto.TodoDTO;
 
 @Service
 public class TodoService {
@@ -21,11 +21,11 @@ public class TodoService {
 	@Autowired
     private TodoRestClient restClient;
 
-	public List<Todo> findByOwnerId(Long ownerId) {
+	public List<TodoDTO> findByOwnerId(Long ownerId) {
 		return restClient.findByOwnerId(ownerId).stream().map(TodoService::toAppTodo).collect(Collectors.toList());
 	}
 	
-	public Todo findOne(Long todoId) {
+	public TodoDTO findOne(Long todoId) {
 		return toAppTodo(restClient.findOne(todoId));
 	}
 
@@ -34,13 +34,13 @@ public class TodoService {
 		return restClientTodo.getOwnerUserId().equals(userId);
 	}
 	
-	public Todo create(Long userId, Todo todo) {
-		RestClientTodoDTO restClientTodo = toRestClientTodo(todo);
+	public TodoDTO create(Long userId, TodoDTO todoDTO) {
+		RestClientTodoDTO restClientTodo = toRestClientTodo(todoDTO);
 		restClientTodo.setOwnerUserId(userId);
 		return toAppTodo(restClient.create(restClientTodo));
 	}
 	
-	public Todo update(Long todoId, Todo todoPatch) {
+	public TodoDTO update(Long todoId, TodoDTO todoPatch) {
 		return toAppTodo(restClient.update(todoId, toRestClientTodo(todoPatch)));
 	}
 	
@@ -48,14 +48,14 @@ public class TodoService {
 		restClient.delete(todoId);
 	}
 
-	private static final Todo toAppTodo(RestClientTodoDTO restClientTodoDTO) {
-		Todo todo = new Todo();
-		BeanUtils.copyProperties(restClientTodoDTO, todo);
-		LOGGER.trace("restClientDTOToAppDTO({}) --> {}", restClientTodoDTO, todo);
-		return todo;
+	private static final TodoDTO toAppTodo(RestClientTodoDTO restClientTodoDTO) {
+		TodoDTO todoDTO = new TodoDTO();
+		BeanUtils.copyProperties(restClientTodoDTO, todoDTO);
+		LOGGER.trace("restClientDTOToAppDTO({}) --> {}", restClientTodoDTO, todoDTO);
+		return todoDTO;
 	}
 	
-	private static final RestClientTodoDTO toRestClientTodo(Todo todoNew) {
+	private static final RestClientTodoDTO toRestClientTodo(TodoDTO todoNew) {
 		RestClientTodoDTO restClientTodo = new RestClientTodoDTO();
 		BeanUtils.copyProperties(todoNew, restClientTodo);
 		LOGGER.trace("newTodoEntity({}) --> {}", todoNew, restClientTodo);

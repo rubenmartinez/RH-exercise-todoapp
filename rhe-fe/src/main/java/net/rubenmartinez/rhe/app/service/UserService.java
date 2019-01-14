@@ -2,6 +2,7 @@ package net.rubenmartinez.rhe.app.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import net.rubenmartinez.rhe.app.dao.UserRepository;
 import net.rubenmartinez.rhe.app.dao.domain.User;
+import net.rubenmartinez.rhe.app.dto.UserDTO;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -29,4 +31,10 @@ public class UserService implements UserDetailsService {
         LOGGER.debug("loadUserByUsername({}) --> {}", username, user);
         return user;
     }
+    
+	public UserDTO getUserDTO(User userEntity) {
+		UserDTO userDTO = new UserDTO();
+		BeanUtils.copyProperties(userEntity, userDTO);
+		return userDTO;
+	}    
 }

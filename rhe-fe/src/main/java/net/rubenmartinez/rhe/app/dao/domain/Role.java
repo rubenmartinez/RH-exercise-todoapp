@@ -1,13 +1,14 @@
 package net.rubenmartinez.rhe.app.dao.domain;
 
-import org.springframework.security.core.GrantedAuthority;
+import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Objects;
+
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name="roles")
