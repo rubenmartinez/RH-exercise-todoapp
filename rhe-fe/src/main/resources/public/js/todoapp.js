@@ -1,15 +1,6 @@
 'use strict';
 
-var STORAGE_KEY = 'todos-vuejs';
-
-var todoStorage = {
-	fetch : function() {
-		return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-	},
-	save : function(todos) {
-		localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-	}
-};
+const TODOS_ENDPOINT="/api/v1/usertodos";
 
 var filters = {
 	all : function(todos) {
@@ -32,19 +23,17 @@ var app = new Vue({
 
 	// app initial state
 	data : {
-		todos : todoStorage.fetch(),
-		newTodo : '',
+		todos : [],
+		newTodoTitle : '',
 		textFilter: '',
 		editedTodo : null,
 		visibility : 'all'
 	},
-
-	// watch todos change for localStorage persistence
-	watch : {
-		todos : {
-			deep : true,
-			handler : todoStorage.save
-		}
+	
+	mounted: function()	 {
+        axios.get(TODOS_ENDPOINT).then((response) => {
+        	this.todos = response.data;
+        });
 	},
 
 	computed : {
@@ -70,23 +59,29 @@ var app = new Vue({
 		pluralize : function(word, count) {
 			return word + (count === 1 ? '' : 's');
 		},
-
+		
 		addTodo : function() {
-			var value = this.newTodo && this.newTodo.trim();
+			var value = this.newTodoTitle && this.newTodoTitle.trim();
 			if (!value) {
 				return;
 			}
-			this.todos.push({
-				id : this.todos.length + 1,
+			
+			var newTodo = {
 				title : value,
 				completed : false
-			});
-			this.newTodo = '';
+			};
+			
+			axios.post(TODOS_ENDPOINT, newTodo).then((response) => {
+				this.todos.push(response.data);
+				this.newTodoTitle = '';
+	        });
 		},
 
 		removeTodo : function(todo) {
-			var index = this.todos.indexOf(todo);
-			this.todos.splice(index, 1);
+			axios.delete(TODOS_ENDPOINT + "/" + todo.id).then((response) => {
+				var index = this.todos.indexOf(todo);
+				this.todos.splice(index, 1);
+	        });
 		},
 
 		editTodo : function(todo) {
@@ -103,15 +98,23 @@ var app = new Vue({
 			if (!todo.title) {
 				this.removeTodo(todo);
 			}
+			else {
+				axios.put(TODOS_ENDPOINT + "/" + todo.id, todo);
+			}
 		},
 
 		cancelEdit : function(todo) {
 			this.editedTodo = null;
 			todo.title = this.beforeEditCache;
 		},
+		
+		switchCompleted: function(todo) {
+			axios.put(TODOS_ENDPOINT + "/" + todo.id, todo);
+			todo.completed = !todo.completed;
+		},
 
 		removeCompleted : function() {
-			this.todos = filters.active(this.todos);
+			filters.completed(this.todos).forEach( todo => this.removeTodo(todo) );
 		},
 		
 		clearTextFilter : function() {

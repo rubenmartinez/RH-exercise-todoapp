@@ -13,10 +13,13 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
 @Entity
 @Table(name="todo_item", indexes = { @Index(columnList = "ownerUserId") })
+@Getter @Setter @ToString
 public class TodoEntity {
     @Id
     @GeneratedValue

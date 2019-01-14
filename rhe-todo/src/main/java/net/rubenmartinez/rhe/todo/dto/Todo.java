@@ -4,9 +4,10 @@ import java.time.LocalTime;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
-@Getter @ToString
+@Getter @Setter @ToString
 public class Todo {
     private Long id;
 

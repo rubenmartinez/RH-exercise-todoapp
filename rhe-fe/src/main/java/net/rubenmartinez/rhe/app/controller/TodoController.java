@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,17 +38,17 @@ public class TodoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> create(@RequestBody Todo todo, Authentication authentication) {
-		todoService.create(todo);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<Todo> create(@RequestBody Todo todo, Authentication authentication) {
+		Todo createdTodo = todoService.create(getUserId(authentication), todo);
+		return new ResponseEntity<>(createdTodo, HttpStatus.CREATED);
 	}
 	
-	@PatchMapping("/{id}")
-	public ResponseEntity<Void> update(@PathVariable("id") Long todoId, @RequestBody Todo todo, Authentication authentication) {
+	@PutMapping("/{id}")
+	public ResponseEntity<Todo> update(@PathVariable("id") Long todoId, @RequestBody Todo todoPatch, Authentication authentication) {
 		checkTodoWriteAllowed(authentication, todoId);
-		
-		todoService.update(todoId, todo);
-		return new ResponseEntity<>(HttpStatus.OK);
+			
+		Todo updatedTodo = todoService.update(todoId, todoPatch);
+		return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")

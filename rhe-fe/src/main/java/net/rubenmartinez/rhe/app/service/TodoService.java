@@ -34,12 +34,14 @@ public class TodoService {
 		return restClientTodo.getOwnerUserId().equals(userId);
 	}
 	
-	public void create(Todo todo) {
-		restClient.create(toRestClientTodo(todo));
+	public Todo create(Long userId, Todo todo) {
+		RestClientTodoDTO restClientTodo = toRestClientTodo(todo);
+		restClientTodo.setOwnerUserId(userId);
+		return toAppTodo(restClient.create(restClientTodo));
 	}
 	
-	public void update(Long todoId, Todo todoPatch) {
-		restClient.update(todoId, toRestClientTodo(todoPatch));
+	public Todo update(Long todoId, Todo todoPatch) {
+		return toAppTodo(restClient.update(todoId, toRestClientTodo(todoPatch)));
 	}
 	
 	public void delete(Long todoId) {
