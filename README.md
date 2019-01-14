@@ -55,15 +55,6 @@ A repository for each microservice have been created and uploaded to http://dock
 * **rhe-todo**: https://hub.docker.com/r/rubenmartinez/rhe-todo
 * **rhe-fe**: https://hub.docker.com/r/rubenmartinez/rhe-fe
 
-In "production mode", the microservices need a mysql database to store users and todos. This MySQL Database is automatically setup when using docker-compose (see next section), but it is possible to execute the microservices using an existing MySQL Server if available, by executing:
-
-
-
-In this case the MySQL Server specified should contain a Database called 'todoapp', which access to two users: `rhe-todo` (password: `rhe-todo`), and `rhe-fe` (password: `rhe-fe`).
-
-(disclaimer: this case has not been tested, as the docker-compose is much more convenient).
-
-
 #### Docker compose
 
 A docker-compose.yml file is provided so a full stack of all the required servers can be started, including databases, by executing in the project directory:
@@ -99,6 +90,23 @@ To remove the volume and todos you can execute:
 ```
 docker-compose down -v
 ```
+
+#### Just Docker
+
+In "production mode", the microservices need a mysql database to store users and todos. This MySQL Database is automatically setup when using docker-compose (see previous section) without any extra needed steps, but it is possible to execute the microservices using an existing MySQL Server if available, by executing:
+
+```bash
+docker network create rhe
+```
+```bash
+docker run --rm -p8081:8081 --network rhe -eDB_DATASOURCE=jdbc:mysql://[mysql host and port]/todoapp rubenmartinez/rhe-todo
+```
+```bash
+docker run --rm -p8080:8080 --network rhe -eDB_DATASOURCE=jdbc:mysql://[mysql host and port]/todoapp rubenmartinez/rhe-fe
+```
+
+In this case the MySQL Server specified should contain a Database called 'todoapp', which access to two users: `rhe-todo` (password: `rhe-todo`), and `rhe-fe` (password: `rhe-fe`).
+
 
 #### Docker images creation
 
