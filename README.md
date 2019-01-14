@@ -113,7 +113,7 @@ In this case the MySQL Server specified should contain a Database called 'todoap
 The Docker images are created directly from the maven deployment process, thanks to the [fabric8io plugin](https://github.com/fabric8io/docker-maven-plugin). To rebuild and push one images you can go the module directory (rhe-todo or rhe-fe) and execute:
 
 ```
-mvn clean install -Pdocker -D
+mvn clean install -Pdocker -DskipTests=true
 ```
 
 
