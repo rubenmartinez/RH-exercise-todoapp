@@ -42,16 +42,6 @@ var app = new Vue({
 		},
 		remaining : function() {
 			return filters.active(this.todos).length;
-		},
-		allDone : {
-			get : function() {
-				return this.remaining === 0;
-			},
-			set : function(value) {
-				this.filteredTodos.forEach(function(todo) {
-					todo.completed = value;
-				});
-			}
 		}
 	},
 

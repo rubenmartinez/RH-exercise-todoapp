@@ -130,10 +130,6 @@ button {
 	padding: 10px 27px 10px 27px;
 }
 
-.toggle-all:checked + label:before {
-	color: #737373;
-}
-
 .todo-list {
 	margin: 0;
 	padding: 0;
