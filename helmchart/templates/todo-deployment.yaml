@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: rhe-todo
+  labels:
+    app: rhe-todo
+spec:
+  replicas: 2
+  selector:
+    app: rhe-todo
+    deploymentconfig: rhe-todo
+  template:
+    metadata:
+      labels:
+        app: rhe-todo
+        deploymentconfig: rhe-todo
+    spec:
+      containers:
+        - image: docker-registry.default.svc:5000/rubenmartinez/rhe-todo
+          imagePullPolicy: Always
+          name: rhe-todo
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+          env:
+          - DB_DATASOURCE=jdbc:mysql://mysql-todo/todoapp

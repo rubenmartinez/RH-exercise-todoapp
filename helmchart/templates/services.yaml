@@ -1,0 +1,66 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: mysql-fe
+    labels:
+      app: mysql-fe
+  spec:
+    type: LoadBalancer
+    ports:
+      - name: 3306-tcp
+        port: 3306
+        protocol: TCP
+        targetPort: 3306
+    selector:
+      deploymentconfig: mysql-fe
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: mysql-todo
+    labels:
+      app: mysql-todo
+  spec:
+    type: LoadBalancer
+    ports:
+      - name: 3306-tcp
+        port: 3306
+        protocol: TCP
+        targetPort: 3306
+    selector:
+      deploymentconfig: mysql-todo
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: rhe-todo
+    labels:
+      app: rhe-todo
+  spec:
+    type: LoadBalancer
+    ports:
+      - name: 8080-tcp
+        port: 8080
+        protocol: TCP
+        targetPort: 8080
+    selector:
+      deploymentconfig: rhe-todo
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: rhe-fe
+    labels:
+      app: rhe-fe
+  spec:
+    type: LoadBalancer
+    ports:
+      - name: 8080-tcp
+        port: 8080
+        protocol: TCP
+        targetPort: 8080
+    selector:
+      deploymentconfig: rhe-fe
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: mysql-fe
+  labels:
+    app: mysql-fe
+spec:
+  replicas: 1
+  selector:
+    app: mysql-fe
+    deploymentconfig: mysql-fe
+  template:
+    metadata:
+      labels:
+        app: mysql-fe
+        deploymentconfig: mysql-fe
+    spec:
+      containers:
+        - image: docker-registry.default.svc:5000/mysql:5.6
+          imagePullPolicy: Always
+          name: mysql-fe
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          env:
+          - MYSQL_DATABASE=todoapp
+          - MYSQL_USER=rhe-todo
+          - MYSQL_PASSWORD=rhe-todo
+          - MYSQL_RANDOM_ROOT_PASSWORD=yes
