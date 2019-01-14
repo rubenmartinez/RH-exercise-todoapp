@@ -1,0 +1,12 @@
+version: '3'
+services:
+  todo:
+    image: "rubenmartinez/rhe-todo"
+    ports:
+     - "8081:8081"
+  fe:
+    image: "rubenmartinez/rhe-fe"
+    ports:
+     - "8080:8080"
+    environment:
+     - TODO_MS=todo:8081

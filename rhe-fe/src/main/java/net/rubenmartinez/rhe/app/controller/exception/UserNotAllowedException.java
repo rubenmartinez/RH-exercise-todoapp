@@ -1,9 +1,10 @@
-package net.rubenmartinez.rhe.app.controller;
+package net.rubenmartinez.rhe.app.controller.exception;
 
 /**
- * A {@code RuntimeException} to signal an error when a user tries to access a Todo not beloging to him
+ * A {@code RuntimeException} to signal an error when a user tries to 
+ * do a not allowed operation, such as accessing a Todo not belonging to him
  */
-public class UserNotAllowed extends RuntimeException {
+public class UserNotAllowedException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,7 +15,7 @@ public class UserNotAllowed extends RuntimeException {
      * @param   message   the detail message. The detail message is saved for
      *          later retrieval by the {@link #getMessage()} method.
      */
-    public UserNotAllowed(String message) {
+    public UserNotAllowedException(String message) {
         super(message);
     }
 
@@ -32,7 +33,7 @@ public class UserNotAllowed extends RuntimeException {
      *         unknown.)
      * @since  1.4
      */
-    public UserNotAllowed(String message, Throwable cause) {
+    public UserNotAllowedException(String message, Throwable cause) {
         super(message, cause);
     }
 

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.rubenmartinez.rhe.app.controller.exception.UserNotAllowedException;
 import net.rubenmartinez.rhe.app.dao.domain.User;
 import net.rubenmartinez.rhe.app.dto.Todo;
 import net.rubenmartinez.rhe.app.service.TodoNotFoundException;
@@ -62,7 +63,7 @@ public class TodoController {
 	private void checkTodoWriteAllowed(Authentication authentication, Long todoId) {
 		Long userId = getUserId(authentication);
 		if (!todoService.isOwner(getUserId(authentication), todoId)) {
-			throw new UserNotAllowed(String.format("UserId [%s] is not the owner of todoId [%s]", userId, todoId));
+			throw new UserNotAllowedException(String.format("UserId [%s] is not the owner of todoId [%s]", userId, todoId));
 		}
 	}
 	
