@@ -2,7 +2,6 @@ package net.rubenmartinez.rhe.todo.dto;
 
 import java.time.LocalTime;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
