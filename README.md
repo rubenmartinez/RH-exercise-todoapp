@@ -150,13 +150,13 @@ You will notice the log levels are much more verbose too.
 
 ## Application Usage
 
-First, after the applicationWait for this message to apear in the logs:
+After stating the applications, please wait for this message to apear in the logs:
 
 ```
->>>>>>>>>>>>>>>>>>>> Server ready at http://127.0.0.1:8080/ <<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>> Server ready at http://127.0.0.1:<port>/ <<<<<<<<<<<<<<<<<<<<
 ```
 
-It needs to be the port 8080 and not 8081, which is the port used for the front-end part. (_Note: When starting the services via docker-compose, it is better to wait a few seconds more, as with docker-compose it wasn't inmediate to implement a live probeness for mysql, that is easier on Kubernetes, this wait is not necessary in develpment mode with an embedded database_)
+Then go to http://127.0.0.1:8081, which is the port used for the front-end part. (_Note: When starting the services via docker-compose, it is better to wait a few seconds more, as with docker-compose it wasn't inmediate to implement a live probeness for mysql, that is easier on Kubernetes, this wait is not necessary in develpment mode with an embedded database_)
 
 There are two users preloaded in the application (no time to write the user registration part :/)
 
