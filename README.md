@@ -5,9 +5,6 @@
 [![Build Status](https://travis-ci.org/rubenmartinez/RH-exercise-todoapp.svg?branch=master)](https://travis-ci.org/rubenmartinez/RH-exercise-todoapp)
 
 
-**Preliminary Note:**
-
-The position I'm applying is "_Senior Software Engineer - Cloud Technologies_", so in the 2-day period allowed for the assigment, and with limited time over the weekend, I decided to focus on Cloud technologies (suck as Docker and Kubernetes), and that meant sacrificing creating a more feature reach application or even writing more tests as I would have liked. Anyway some basic user authentication and filtering tasks is there, apart from the pure Todo logic.
 
 ## Project Structure
 
