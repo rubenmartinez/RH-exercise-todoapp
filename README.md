@@ -16,7 +16,7 @@ The project consists of 2 example microservices (This might be an overkill for t
 
 Ideally the Todo backend could provide service to other part of the systems, not only the frontend app, and could evolve separately from them, providing more functionality such as having todo lists, todo projects, todo priorities, todo deadlines with alarms or notifications to URLs while providing backwards compatibility to all his clients.
 
-For simpliticy a main pom with artifactId "redhat-exercise", builts the two microservices as modules.
+For simpliticy a main pom builts the two microservices as modules.
 
 ### Todo microservice
 
